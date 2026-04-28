@@ -1,0 +1,67 @@
+# ----- Godot 4 -----
+# Godot rebuilds these on every project open. Never commit them.
+godot/.godot/
+godot/.import/
+godot/export.cfg
+godot/export_presets.cfg
+godot/*.translation
+
+# Godot's mono / .NET build artifacts (we use GDScript, but guard anyway)
+godot/.mono/
+godot/mono_crash.*.json
+
+# ----- Build output -----
+# We commit the build/ directory's .gitkeep but not the export payloads.
+build/*
+!build/.gitkeep
+
+# ----- Aseprite -----
+# Aseprite leaves these around when it crashes or auto-saves.
+*.aseprite-bak
+*.ase-recover
+~$*.aseprite
+
+# ----- Audacity -----
+# Project bundles. We commit bounced WAV/Ogg, not the project source.
+*.aup3-shm
+*.aup3-wal
+*_data/
+
+# ----- IDEs & editors -----
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.code-workspace
+
+# ----- OS cruft -----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ----- Python (skill scripts, occasional tooling) -----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# ----- Node (in case any tooling shows up) -----
+node_modules/
+npm-debug.log*
+
+# ----- Local secrets -----
+.env.local
+.env.*.local
+*.local
+secrets.json

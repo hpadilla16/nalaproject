@@ -1,0 +1,82 @@
+# Default: text, normalized to LF in the repo, native on checkout.
+* text=auto eol=lf
+
+# ----- Source / config: explicit text, LF -----
+*.md         text eol=lf
+*.txt        text eol=lf
+*.gd         text eol=lf
+*.gdshader   text eol=lf
+*.tscn       text eol=lf
+*.tres       text eol=lf
+*.cfg        text eol=lf
+*.json       text eol=lf
+*.yml        text eol=lf
+*.yaml       text eol=lf
+*.toml       text eol=lf
+*.gitignore  text eol=lf
+*.gitattributes text eol=lf
+.editorconfig text eol=lf
+
+# Shell scripts must be LF or they break on Linux/macOS.
+*.sh         text eol=lf
+
+# Windows batch files need CRLF.
+*.bat        text eol=crlf
+*.cmd        text eol=crlf
+
+# ----- Binary assets: never diff, never line-end-fix -----
+# Aseprite
+*.aseprite   binary
+*.ase        binary
+
+# Images
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+*.bmp        binary
+*.tga        binary
+*.psd        binary
+*.webp       binary
+*.svg        binary
+
+# Audio
+*.wav        binary
+*.ogg        binary
+*.mp3        binary
+*.flac       binary
+*.aiff       binary
+*.aif        binary
+
+# Audacity project bundles (we don't usually commit these, but guard)
+*.aup        binary
+*.aup3       binary
+
+# Fonts
+*.ttf        binary
+*.otf        binary
+*.woff       binary
+*.woff2      binary
+
+# Godot import metadata is text but rewriting line endings breaks the engine
+# on cross-platform checkouts.
+*.import     text eol=lf
+
+# Office docs (the design bible)
+*.docx       binary
+*.doc        binary
+*.pdf        binary
+*.pptx       binary
+*.xlsx       binary
+
+# Archives
+*.zip        binary
+*.tar        binary
+*.gz         binary
+*.7z         binary
+
+# ----- GitHub linguist hints -----
+# Keep the bible out of language stats.
+Nala_Project_Design_Bible.docx linguist-vendored
+.agents/skills/** linguist-documentation
+docs/** linguist-documentation
