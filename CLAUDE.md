@@ -187,5 +187,7 @@ must accommodate this.
 
 Commit with a message that describes the change in plain language. Push to
 `origin/main`. Append your devlog entry. If you opened a question that needs
-a human decision, file it in `docs/devlog/` with a `?` in the title and call
-it out in the commit body.
+a human decision, file it in `docs/devlog/` with an `-open` suffix in the
+filename (e.g. `005-foo-question-open.md`) and call it out in the commit
+body. (`?` is not a legal Windows filename character — `-open` is the
+portable equivalent.)

@@ -68,12 +68,13 @@ tick SFX), name both in the brief and decide which delivers first.
 After every meaningful unit of work, append an entry to `docs/devlog/`
 numbered sequentially after the last existing file (`000-genesis.md`,
 `001-...`, `002-...`). One paragraph. Include: what changed, why, what
-question (if any) is now live for the human to decide. Use a `?` in the
-filename if the entry contains an open question.
+question (if any) is now live for the human to decide. Use an `-open`
+suffix in the filename (e.g. `005-foo-open.md`) if the entry contains an
+open question. (`?` is not a legal Windows filename character.)
 
 ## When you don't know
 
 Ask, don't guess. The bible answers most things; for things the bible does
 not answer, §24.5 (Decisions Still Open) is the canonical list of dangling
 calls. If a question is not in §24.5, surface it to the human as a devlog
-entry with a `?` in the title.
+entry with an `-open` suffix in the filename.
