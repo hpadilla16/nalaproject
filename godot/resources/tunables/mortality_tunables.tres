@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MortalityTunables" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/mortality_tunables.gd" id="1_tun"]
+
+[resource]
+script = ExtResource("1_tun")
+starting_mortality = 1000.0
+bleed_prologue = 0.1
+bleed_lust = 0.2
+bleed_gluttony = 0.25
+bleed_greed = 0.3
+bleed_wrath = 0.35
+bleed_heresy = 0.4
+bleed_violence = 0.5
+bleed_fraud = 0.6
+bleed_treachery = 0.75

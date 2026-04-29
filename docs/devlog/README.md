@@ -29,3 +29,4 @@ have already been doing this work for hours.
 - `002-character-create-family-open.md` — open: granularity of the family-composition input at character-create.
 - `003-m0-dispatch.md` — lead PM dispatched M0 (engine bones) to `coding-expert`.
 - `004-dev-environment-setup.md` — toolchain installed on Hector's machine.
+- `005-m0-engine-bones.md` — M0 landed: project, autoloads, protagonist, two test scenes, save/load roundtrip.

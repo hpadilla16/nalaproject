@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/protagonist/protagonist.tscn" id="1_prot"]
+[ext_resource type="PackedScene" path="res://scenes/world/portal.tscn" id="2_portal"]
+
+[node name="SceneB" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.2, 0.1, 0.1, 1)
+polygon = PackedVector2Array(-640, -360, 640, -360, 640, 360, -640, 360)
+
+[node name="Label" type="Label2D" parent="."]
+position = Vector2(0, -300)
+text = "SCENE B"
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(200, 0)
+
+[node name="Protagonist" parent="." instance=ExtResource("1_prot")]
+position = Vector2(200, 0)
+
+[node name="PortalToA" parent="." instance=ExtResource("2_portal")]
+position = Vector2(-200, 0)
+target_scene_path = "res://scenes/test/scene_a.tscn"
+target_spawn_marker = "PlayerSpawn"
