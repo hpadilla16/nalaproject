@@ -13,9 +13,13 @@ script = ExtResource("5_script")
 color = Color(0.1, 0.15, 0.2, 1)
 polygon = PackedVector2Array(-640, -360, 640, -360, 640, 360, -640, 360)
 
-[node name="Label" type="Label2D" parent="."]
-position = Vector2(0, -300)
+[node name="Label" type="Label" parent="."]
+offset_left = -40
+offset_top = -340
+offset_right = 40
+offset_bottom = -300
 text = "SCENE A"
+horizontal_alignment = 1
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(-200, 0)

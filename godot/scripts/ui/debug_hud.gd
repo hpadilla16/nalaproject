@@ -67,11 +67,11 @@ func _connect_signals() -> void:
 	LedgerState.redemption_recorded.connect(_on_redemption_recorded)
 
 
-func _on_mortality_changed(new_value: float, delta: float) -> void:
+func _on_mortality_changed(_new_value: float, _delta: float) -> void:
 	_update_mortality()
 
 
-func _on_mortality_low(value: float) -> void:
+func _on_mortality_low(_value: float) -> void:
 	_mortality_label.add_theme_color_override("font_color", Color.YELLOW)
 
 
@@ -79,13 +79,13 @@ func _on_mortality_exhausted() -> void:
 	_mortality_label.add_theme_color_override("font_color", Color.RED)
 
 
-func _on_sin_recorded(event: LedgerEvent) -> void:
+func _on_sin_recorded(_event: LedgerEvent) -> void:
 	_sin_flash = true
 	_flash_timer = 0.3
 	_update_ledger()
 
 
-func _on_redemption_recorded(event: LedgerEvent) -> void:
+func _on_redemption_recorded(_event: LedgerEvent) -> void:
 	_redemption_flash = true
 	_flash_timer = 0.3
 	_update_ledger()
