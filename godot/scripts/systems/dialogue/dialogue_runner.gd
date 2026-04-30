@@ -24,39 +24,11 @@ var _text_display: RichTextLabel
 
 
 func _ready() -> void:
-	_setup_ui()
+	# Wire up scene-authored nodes instead of creating in code
+	_panel = $Panel
+	_speaker_label = $Panel/SpeakerLabel
+	_text_display = $Panel/TextDisplay
 	visible = false
-
-
-func _setup_ui() -> void:
-	# Create panel backdrop
-	_panel = Panel.new()
-	_panel.custom_minimum_size = Vector2(800, 200)
-	_panel.anchor_left = 0.5
-	_panel.anchor_top = 1.0
-	_panel.anchor_right = 0.5
-	_panel.anchor_bottom = 1.0
-	_panel.offset_left = -400
-	_panel.offset_top = -200
-	add_child(_panel)
-
-	# Create speaker label
-	_speaker_label = Label.new()
-	_speaker_label.anchor_left = 0.05
-	_speaker_label.anchor_top = 0.1
-	_speaker_label.text = ""
-	_speaker_label.add_theme_font_size_override("font_size", 16)
-	_panel.add_child(_speaker_label)
-
-	# Create rich text display
-	_text_display = RichTextLabel.new()
-	_text_display.anchor_left = 0.05
-	_text_display.anchor_top = 0.3
-	_text_display.anchor_right = 0.95
-	_text_display.anchor_bottom = 0.95
-	_text_display.bbcode_enabled = true
-	_text_display.custom_minimum_size = Vector2(750, 150)
-	_panel.add_child(_text_display)
 
 
 func play(res: DialogueResource) -> void:
