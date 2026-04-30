@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/systems/dialogue/dialogue_resource.gd" id="1_res"]
+[ext_resource type="Script" path="res://scripts/systems/dialogue/dialogue_line.gd" id="2_line"]
+
+[sub_resource type="Resource" id="DialogueLine_1"]
+script = ExtResource("2_line")
+speaker_id = &"nala"
+speaker_label = "Nala"
+text = "Still here?"
+
+[sub_resource type="Resource" id="DialogueLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_label = ""
+text = "Always."
+
+[resource]
+script = ExtResource("1_res")
+lines = [SubResource("DialogueLine_1"), SubResource("DialogueLine_2")]
