@@ -9,6 +9,8 @@ extends Node
 
 signal run_state_replaced(new_state: RunState)
 
+const MORTALITY_TUNABLES_PATH: String = "res://resources/tunables/mortality_tunables.tres"
+
 var run_state: RunState = RunState.new()
 
 

@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/onboarding/content_note.gd" id="1_content_note"]
+
+[node name="ContentNote" type="Control"]
+layout_mode=3
+anchors_left=0.0
+anchors_top=0.0
+anchors_right=1.0
+anchors_bottom=1.0
+script=ExtResource("1_content_note")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode=1
+anchors_left=0.0
+anchors_top=0.0
+anchors_right=1.0
+anchors_bottom=1.0
+color=Color(0.1, 0.1, 0.1, 1.0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode=1
+anchors_left=0.5
+anchors_top=0.5
+anchors_right=0.5
+anchors_bottom=0.5
+offset_left=-400.0
+offset_top=-200.0
+offset_right=400.0
+offset_bottom=200.0
+alignment=1
+
+[node name="TextContent" type="Label" parent="VBoxContainer"]
+layout_mode=2
+text="This game depicts depression, suicidal ideation, and self-harm as part of its story. The descent is meant to be uncomfortable; that discomfort is the design.
+
+If at any point you need to step away, the game saves continuously and will be here when you return.
+
+If you are struggling beyond the game – call or text 988 in the United States, or visit findahelpline.com to find a crisis line near you.
+
+You are seen."
+wrap_text=true
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner=true
+layout_mode=2
+text="I understand."

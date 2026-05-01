@@ -1,18 +1,16 @@
 extends Node
 
 ## Boot scene script. Runs once at game start (project.godot points
-## run/main_scene at scenes/main.tscn). Decides whether to resume a saved
-## descent or to start a fresh one, then hands off to SceneRouter and
-## leaves the tree.
-
-const TUNABLES_PATH: String = "res://resources/tunables/mortality_tunables.tres"
-const DEFAULT_FIRST_SCENE: String = "res://scenes/test/scene_a.tscn"
+## run/main_scene at scenes/main.tscn). Loads tunables, sets baseline
+## bleed rate, then routes to onboarding (boot_picker if save exists,
+## else content_note) or resumes a saved descent. Hands off to SceneRouter
+## and leaves the tree.
 
 
 func _ready() -> void:
-	var tunables: MortalityTunables = load(TUNABLES_PATH) as MortalityTunables
+	var tunables: MortalityTunables = load(RunStateRegistry.MORTALITY_TUNABLES_PATH) as MortalityTunables
 	if tunables == null:
-		push_error("Main: failed to load mortality tunables at %s" % TUNABLES_PATH)
+		push_error("Main: failed to load mortality tunables")
 		return
 
 	# M0 has no per-circle awareness, so use the prologue bleed rate as the
@@ -20,13 +18,14 @@ func _ready() -> void:
 	# thresholds.
 	MortalityClock.set_bleed_rate(tunables.bleed_prologue)
 
+	# M2: check for a saved run. If one exists and has a scene path, resume it.
+	# Otherwise, route to onboarding (boot_picker if save exists, else content_note).
 	if SaveSystem.has_save():
 		SaveSystem.load_save()
 		var saved_scene: String = RunStateRegistry.run_state.current_scene_path
 		if saved_scene != "":
 			SceneRouter.transition_to(saved_scene)
 			return
-		# Save existed but had no scene path. Fall through to a fresh descent.
 
-	RunStateRegistry.reset_for_new_descent(tunables)
-	SceneRouter.transition_to(DEFAULT_FIRST_SCENE)
+	# No valid save or save corrupted; start onboarding flow.
+	SceneRouter.route_to_onboarding()

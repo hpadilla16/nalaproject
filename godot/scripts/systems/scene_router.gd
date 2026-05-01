@@ -10,7 +10,8 @@ extends Node
 ##      consistently across every scene.
 ##
 ## Doors / portals call `transition_to(path, spawn_marker_name)` and trust
-## this autoload to handle the rest.
+## this autoload to handle the rest. Onboarding flows use route_to_*()
+## helpers for entry points.
 
 signal transition_started(target_scene_path: String)
 signal transition_completed(target_scene_path: String)
@@ -52,3 +53,21 @@ func _do_change_scene(scene_path: String) -> void:
 	await get_tree().process_frame
 	_in_flight_target = ""
 	emit_signal("transition_completed", scene_path)
+
+
+## Route to the onboarding entry point. If a save exists, show boot_picker
+## (continue or new run). Otherwise, skip to content_note (new run only).
+func route_to_onboarding() -> void:
+	if SaveSystem.has_save():
+		transition_to("res://scenes/onboarding/boot_picker.tscn")
+	else:
+		transition_to("res://scenes/onboarding/content_note.tscn")
+
+
+## Hard-reset the RunState and route to character-create. Used when the
+## player chooses "new run" from boot_picker.
+func route_to_fresh_descent() -> void:
+	RunStateRegistry.reset_for_new_descent(
+		load(RunStateRegistry.MORTALITY_TUNABLES_PATH) as MortalityTunables
+	)
+	transition_to("res://scenes/onboarding/content_note.tscn")

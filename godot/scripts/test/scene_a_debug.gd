@@ -32,3 +32,23 @@ func _input(event: InputEvent) -> void:
 		# F4: Play test dialogue
 		_dialogue_runner.play(load("res://resources/dialogue/_test.tres"))
 		get_tree().root.set_input_as_handled()
+
+	elif event.is_action_pressed("debug_log_profile"):
+		# F5: Log current profile and class choice to console
+		var profile: CharacterProfile = RunStateRegistry.run_state.profile
+		var class_choice: RunState.ClassChoice = RunStateRegistry.run_state.class_choice
+		print("=== CharacterProfile ===")
+		print("Name: %s" % profile.name)
+		print("Pronouns: %s (custom: %s)" % [profile.pronouns, profile.pronouns_custom])
+		print("Family: %s" % profile.family)
+		print("ClassChoice: %s" % class_choice)
+		get_tree().root.set_input_as_handled()
+
+	elif event.is_action_pressed("debug_reset_save"):
+		# F6: Clear save and exit to main (boot flow)
+		if SaveSystem.has_save():
+			var err: int = DirAccess.remove_absolute(SaveSystem.SAVE_PATH)
+			if err != OK:
+				push_error("Scene_a_debug: failed to delete save (error %d)" % err)
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
+		get_tree().root.set_input_as_handled()

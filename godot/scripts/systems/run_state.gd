@@ -10,9 +10,21 @@ class_name RunState
 ## run (any of the three endings, §5), the RunState is archived and a new
 ## one begins.
 
+enum ClassChoice {
+	UNDEFINED,
+	SWORD,
+	STAFF,
+	SHIELD,
+}
+
 @export var mortality: Mortality = Mortality.new()
 @export var ledger: Ledger = Ledger.new()
 @export var profile: CharacterProfile = CharacterProfile.new()
+
+## The Class Stone choice from Limbo Beat 8.5 (§4.8). UNDEFINED means the
+## choice has not yet been made. The mechanical differentiation (combat
+## verbs, weapon form) is M3+; M2 only persists the choice.
+@export var class_choice: ClassChoice = ClassChoice.UNDEFINED
 
 ## The scene_path the player was in when state was last saved. SceneRouter
 ## uses this to restore the world on boot.
@@ -23,5 +35,5 @@ class_name RunState
 @export var current_position: Vector2 = Vector2.ZERO
 
 ## Engine version that wrote this save. Lets us migrate if the resource
-## shape changes between releases.
-@export var schema_version: int = 1
+## shape changes between releases. M2 bumps to 2.
+@export var schema_version: int = 2

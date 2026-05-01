@@ -37,6 +37,8 @@ func save() -> void:
 
 ## Read the save into RunStateRegistry. Emits no_save_found if the file
 ## does not exist; callers should treat that as "start a fresh descent."
+## Performs schema migration: if save version < current, logs warning, deletes
+## the save, and emits no_save_found.
 func load_save() -> void:
 	if not has_save():
 		emit_signal("no_save_found")
@@ -46,5 +48,14 @@ func load_save() -> void:
 		emit_signal("load_failed", FAILED)
 		return
 	var state: RunState = resource as RunState
+	# Schema migration: pre-release, we break saves cleanly rather than
+	# migrate field-by-field.
+	if state.schema_version < 2:
+		push_warning("SaveSystem: schema_version %d is obsolete; deleting save" % state.schema_version)
+		var err: int = DirAccess.remove_absolute(SAVE_PATH)
+		if err != OK:
+			push_error("SaveSystem: failed to delete obsolete save at %s (error %d)" % [SAVE_PATH, err])
+		emit_signal("no_save_found")
+		return
 	RunStateRegistry.replace(state)
 	emit_signal("load_completed", state)
